@@ -16,8 +16,9 @@ btn?.addEventListener('click', () => {
   }
 });
 
-// entrada suave de la escena
-document.querySelector('.buttercup')?.animate(
-  [{opacity:0, transform:'translateY(12px)'},{opacity:1, transform:'translateY(0)'}],
+// entrada suave del conjunto
+document.querySelector('.bouquet')?.animate(
+  [{opacity:0, transform:'translateY(12px)'},
+   {opacity:1, transform:'translateY(0)'}],
   {duration:600, easing:'ease-out', fill:'both'}
 );
