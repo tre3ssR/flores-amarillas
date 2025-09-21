@@ -5,32 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Para ti 💛</title>
   <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#ffca28">
+  <meta property="og:title" content="Para ti 💛">
+  <meta property="og:description" content="Un ramillete de flores amarillas para ti">
 </head>
 <body>
-  <main class="wrap">
-    <!-- Flor amarilla (simple SVG). Puedes duplicar este bloque para más flores -->
-    <div class="flower">
-      <svg viewBox="0 0 200 200" aria-label="flor amarilla" role="img">
-        <!-- centro -->
-        <circle cx="100" cy="100" r="18" fill="#6b4e16"/>
-        <!-- pétalos -->
-        <!-- Duplica y rota pétalos para más volumen -->
-        <g fill="#FFD54F" stroke="#F9A825" stroke-width="2">
-          <ellipse cx="100" cy="52" rx="16" ry="30"/>
-          <ellipse cx="148" cy="80" rx="16" ry="30" transform="rotate(60 148 80)"/>
-          <ellipse cx="148" cy="120" rx="16" ry="30" transform="rotate(120 148 120)"/>
-          <ellipse cx="100" cy="148" rx="16" ry="30"/>
-          <ellipse cx="52" cy="120" rx="16" ry="30" transform="rotate(60 52 120)"/>
-          <ellipse cx="52" cy="80" rx="16" ry="30" transform="rotate(120 52 80)"/>
-        </g>
-        <!-- tallo y hoja -->
-        <path d="M100 118 C 100 150, 100 170, 100 190" stroke="#2e7d32" stroke-width="4" fill="none"/>
-        <path d="M100 150 C 120 150, 130 160, 135 170 C 120 168, 110 160, 100 155 Z" fill="#43a047"/>
-      </svg>
-    </div>
+  <!-- capa de corazones y brillitos -->
+  <div class="fx fx-hearts" aria-hidden="true"></div>
+  <div class="fx fx-sparkles" aria-hidden="true"></div>
 
-    <button id="btn">apretame</button>
-    <p id="msg" hidden>Teamu muxito💛</p>
+  <main class="wrap">
+    <header class="intro">
+      <h1>Para ti 💛</h1>
+      <p class="subtitle">Un pequeño jardín de flores amarillas</p>
+    </header>
+
+    <!-- ramillete: 3 flores con tamaños y desfaces -->
+    <section class="bouquet">
+      <div class="flower sm" style="--d:0s;">  <!-- Flor 1 -->
+        <!-- SVG compacto (mismo de antes, duplicado) -->
+        <svg viewBox="0 0 200 200" role="img" aria-label="flor amarilla">
+          <circle cx="100" cy="100" r="18" fill="#6b4e16"/>
+          <g fill="#FFD54F" stroke="#F9A825" stroke-width="2">
+            <ellipse cx="100" cy="52" rx="16" ry="30"/>
+            <ellipse cx="148" cy="80" rx="16" ry="30" transform="rotate(60 148 80)"/>
+            <ellipse cx="148" cy="120" rx="16" ry="30" transform="rotate(120 148 120)"/>
+            <ellipse cx="100" cy="148" rx="16" ry="30"/>
+            <ellipse cx="52" cy="120" rx="16" ry="30" transform="rotate(60 52 120)"/>
+            <ellipse cx="52" cy="80" rx="16" ry="30" transform="rotate(120 52 80)"/>
+          </g>
+          <path d="M100 118 C 100 150, 100 170, 100 190" stroke="#2e7d32" stroke-width="4" fill="none"/>
+          <path d="M100 150 C 120 150, 130 160, 135 170 C 120 168, 110 160, 100 155 Z" fill="#43a047"/>
+        </svg>
+      </div>
+
+      <div class="flower lg" style="--d:.25s;"> <!-- Flor 2 (central) -->
+        <svg viewBox="0 0 200 200" role="img" aria-label="flor amarilla">
+          <circle cx="100" cy="100" r="18" fill="#6b4e16"/>
+          <g fill="#FFE082" stroke="#F9A825" stroke-width="2">
+            <ellipse cx="100" cy="52" rx="18" ry="34"/>
+            <ellipse cx="148" cy="80" rx="18" ry="34" transform="rotate(60 148 80)"/>
+            <ellipse cx="148" cy="120" rx="18" ry="34" transform="rotate(120 148 120)"/>
+            <ellipse cx="100" cy="148" rx="18" ry="34"/>
+            <ellipse cx="52" cy="120" rx="18" ry="34" transform="rotate(60 52 120)"/>
+            <ellipse cx="52" cy="80" rx="18" ry="34" transform="rotate(120 52 80)"/>
+          </g>
+          <path d="M100 118 C 100 152, 100 176, 100 196" stroke="#2e7d32" stroke-width="4" fill="none"/>
+          <path d="M100 152 C 120 152, 132 164, 136 175 C 120 172, 110 164, 100 158 Z" fill="#43a047"/>
+        </svg>
+      </div>
+
+      <div class="flower md" style="--d:.5s;">  <!-- Flor 3 -->
+        <svg viewBox="0 0 200 200" role="img" aria-label="flor amarilla">
+          <circle cx="100" cy="100" r="18" fill="#6b4e16"/>
+          <g fill="#FFD54F" stroke="#F9A825" stroke-width="2">
+            <ellipse cx="100" cy="52" rx="16" ry="30"/>
+            <ellipse cx="148" cy="80" rx="16" ry="30" transform="rotate(60 148 80)"/>
+            <ellipse cx="148" cy="120" rx="16" ry="30" transform="rotate(120 148 120)"/>
+            <ellipse cx="100" cy="148" rx="16" ry="30"/>
+            <ellipse cx="52" cy="120" rx="16" ry="30" transform="rotate(60 52 120)"/>
+            <ellipse cx="52" cy="80" rx="16" ry="30" transform="rotate(120 52 80)"/>
+          </g>
+          <path d="M100 118 C 100 150, 100 170, 100 190" stroke="#2e7d32" stroke-width="4" fill="none"/>
+          <path d="M100 150 C 120 150, 130 160, 135 170 C 120 168, 110 160, 100 155 Z" fill="#43a047"/>
+        </svg>
+      </div>
+    </section>
+
+    <button id="btn">Toca para ver tu mensaje</button>
+    <p id="msg" hidden>Amor, te mando este jardín de flores amarillas porque haces más bonito mi mundo 🌼💛</p>
   </main>
 
   <script src="script.js"></script>
