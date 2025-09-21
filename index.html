@@ -18,18 +18,25 @@
   h1{margin:8px 0 0; font-size:clamp(26px,5vw,36px)}
   .subtitle{margin:0 0 8px; font-size:clamp(14px,4vw,16px); opacity:.8}
 
-  .stage{width:100%; display:block}
-  #garden{display:block; width:min(90vw, 620px); margin:0 auto; height:auto}
+  /* Escena centrada */
+  .stage{width:100%}
+  svg#flowers{
+    display:block; width:min(90vw,620px); height:auto; margin:0 auto;
+    /* evita que algo “empuje” a los lados */
+    overflow:visible;
+  }
 
-  .blooms{ animation:sway 6s ease-in-out infinite; transform-origin:50% 100% }
-  @keyframes sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
-  .fireflies circle{ animation:twinkle 2.8s ease-in-out infinite }
-  .fireflies circle:nth-child(2){animation-delay:.4s}
-  .fireflies circle:nth-child(3){animation-delay:.8s}
-  .fireflies circle:nth-child(4){animation-delay:1.2s}
-  .fireflies circle:nth-child(5){animation-delay:1.6s}
-  @keyframes twinkle{0%,100%{opacity:.15;transform:translateY(0)}50%{opacity:.9;transform:translateY(-2px)}}
+  /* Animaciones */
+  .blooms{ animation:sway 6s ease-in-out infinite; transform-origin:50% 100%; }
+  @keyframes sway{ 0%,100%{transform:rotate(-1deg)} 50%{transform:rotate(1deg)} }
+  .fireflies circle{ animation:twinkle 2.8s ease-in-out infinite; }
+  .fireflies circle:nth-child(2){ animation-delay:.4s }
+  .fireflies circle:nth-child(3){ animation-delay:.8s }
+  .fireflies circle:nth-child(4){ animation-delay:1.2s }
+  .fireflies circle:nth-child(5){ animation-delay:1.6s }
+  @keyframes twinkle{ 0%,100%{opacity:.15; transform:translateY(0)} 50%{opacity:.9; transform:translateY(-2px)} }
 
+  /* Botón y mensaje */
   button{
     border:0; padding:12px 18px; border-radius:999px;
     background:linear-gradient(180deg,#ffd95e,#ffb300); color:#3a2a1e; font-size:1.05rem;
@@ -38,9 +45,9 @@
   button:active{ transform:scale(.97); box-shadow:0 4px 10px rgba(0,0,0,.2) }
   #msg{
     font-size:1.1rem; background:rgba(255,248,225,.08); padding:14px 16px; border-radius:16px;
-    line-height:1.45; box-shadow:inset 0 0 0 1px rgba(255,217,94,.35); max-width:680px; margin:0 auto
+    line-height:1.45; box-shadow:inset 0 0 0 1px rgba(255,217,94,.35); max-width:680px; margin:0 auto;
   }
-  @media(max-width:480px){#msg{font-size:1rem} button{font-size:1rem; padding:10px 14px}}
+  @media(max-width:480px){ #msg{font-size:1rem} button{font-size:1rem; padding:10px 14px} }
 </style>
 </head>
 <body>
@@ -48,83 +55,60 @@
   <p class="subtitle">sé que no es mucho, pero intento hacerte feliz cada día</p>
 
   <section class="stage">
-    <!-- viewBox simétrico; TODO alrededor de (0,0) -->
-    <svg id="garden" viewBox="-200 -180 400 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="flores amarillas">
-      <defs>
-        <!-- amarillos -->
-        <radialGradient id="petalYellow" cx="40%" cy="35%" r="80%">
-          <stop offset="0%"  stop-color="#fff27a"/>
-          <stop offset="55%" stop-color="#ffd54f"/>
-          <stop offset="100%" stop-color="#f4a300"/>
-        </radialGradient>
-        <radialGradient id="disc" cx="50%" cy="50%" r="70%">
-          <stop offset="0%" stop-color="#7a5a2a"/>
-          <stop offset="100%" stop-color="#4e3716"/>
-        </radialGradient>
-        <!-- verdes -->
-        <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#1aa37a"/>
-          <stop offset="60%" stop-color="#0f7a67"/>
-          <stop offset="100%" stop-color="#0b4f47"/>
-        </linearGradient>
-        <linearGradient id="stemG" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#3fb073"/>
-          <stop offset="100%" stop-color="#1e7b4d"/>
-        </linearGradient>
-        <!-- halo -->
-        <radialGradient id="glow" cx="50%" cy="50%" r="65%">
-          <stop offset="0%" stop-color="rgba(190,255,170,.85)"/>
-          <stop offset="100%" stop-color="rgba(190,255,170,0)"/>
-        </radialGradient>
-
-        <!-- Flor tipo buttercup compacta -->
-        <symbol id="buttercup" viewBox="-24 -24 48 48">
-          <g fill="url(#petalYellow)" stroke="#f6a700" stroke-width="1.1">
-            <ellipse cx="0" cy="-14" rx="10" ry="7" />
-            <ellipse cx="9" cy="-3" rx="10" ry="7" transform="rotate(18)"/>
-            <ellipse cx="-9" cy="-3" rx="10" ry="7" transform="rotate(-18)"/>
-            <ellipse cx="6" cy="7" rx="10" ry="7" transform="rotate(20)"/>
-            <ellipse cx="-6" cy="7" rx="10" ry="7" transform="rotate(-20)"/>
-          </g>
-          <circle r="4.6" fill="url(#disc)"/>
-        </symbol>
-
-        <!-- CLIP: recorta flores dentro del halo para que nunca se “salgan” -->
-        <clipPath id="clipHalo" clipPathUnits="userSpaceOnUse">
-          <circle cx="0" cy="-10" r="150"/>
-        </clipPath>
-      </defs>
-
-      <!-- suelo + halo -->
+    <!-- ViewBox simétrico; todo alrededor del 0,0 -->
+    <svg id="flowers" viewBox="-200 -180 400 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="flores amarillas">
+      <!-- Halo y sombra (centrados) -->
       <ellipse cx="0" cy="150" rx="120" ry="18" fill="rgba(0,0,0,.45)"/>
-      <circle  cx="0" cy="-10" r="150" fill="url(#glow)" opacity=".35"/>
+      <circle cx="0" cy="-10" r="150" fill="rgba(190,255,170,.18)"/>
 
-      <!-- hojas -->
-      <g fill="url(#leafG)" opacity=".95">
-        <path d="M-150,100 C-94,58 -40,54 0,64 C-20,86 -64,106 -118,110 Z"/>
-        <path d="M150,100 C94,58 40,54 0,64 C20,86 64,106 118,110 Z"/>
-        <path d="M0,60 C-26,48 -32,22 0,8 C32,22 26,48 0,60 Z"/>
-        <path d="M-36,40 C-62,16 -58,-10 -44,-36 C-36,-8 -28,14 -16,36 Z"/>
-        <path d="M36,40 C62,16 58,-10 44,-36 C36,-8 28,14 16,36 Z"/>
+      <!-- Hojas base (capas simples, tonos planos) -->
+      <g fill="#128a73" opacity=".95">
+        <path d="M-140,96 C-92,60 -40,54 0,60 C-20,84 -66,104 -110,108 Z"/>
+        <path d="M140,96  C 92,60  40,54  0,60  C 20,84  66,104 110,108 Z"/>
+        <path d="M0,58 C-24,46 -30,22 0,10 C30,22 24,46 0,58 Z" />
+        <path d="M-34,40 C-56,16 -52,-8 -42,-32 C-34,-8 -26,12 -16,34 Z"/>
+        <path d="M34,40  C 56,16  52,-8  42,-32  C 34,-8  26,12  16,34 Z"/>
       </g>
 
-      <!-- TODO flores + tallos, recortados por el halo -->
-      <g clip-path="url(#clipHalo)">
-        <!-- tallos -->
-        <g stroke="url(#stemG)" stroke-width="6" stroke-linecap="round" fill="none">
-          <path d="M-6,64 C -28,20 -44,-30 -60,-70" />
-          <path d="M0,64  C 0,14  0,-40  0,-90" />
-          <path d="M6,64  C 28,20  44,-28  60,-65" />
+      <!-- Tallos (curvas simples) -->
+      <g stroke="#2fa373" stroke-width="6" stroke-linecap="round" fill="none">
+        <path d="M-6,64 C -26,22 -40,-26 -54,-62" />
+        <path d="M0,64  C 0,16   0,-40  0,-90" />
+        <path d="M6,64  C 26,22  40,-26  54,-62" />
+      </g>
+
+      <!-- FLORES (cada una es un grupo de elipses; nada de <defs>) -->
+      <g class="blooms" stroke="#f1a200" stroke-width="1.8" stroke-linejoin="round" fill="#ffd54f">
+        <!-- Izquierda -->
+        <g transform="translate(-54,-66) rotate(-6)">
+          <ellipse cx="0" cy="-16" rx="12" ry="8"/>
+          <ellipse cx="10" cy="-4"  rx="12" ry="8" transform="rotate(18)"/>
+          <ellipse cx="-10" cy="-4" rx="12" ry="8" transform="rotate(-18)"/>
+          <ellipse cx="6" cy="8"    rx="12" ry="8" transform="rotate(20)"/>
+          <ellipse cx="-6" cy="8"   rx="12" ry="8" transform="rotate(-20)"/>
+          <circle cx="0" cy="0" r="5" fill="#6b4e16" stroke="none"/>
         </g>
-        <!-- flores (coordenadas dentro del halo, centradas) -->
-        <g class="blooms">
-          <g transform="translate(-60,-70) rotate(-6) scale(1.05)"><use href="#buttercup"/></g>
-          <g transform="translate(0,-92) scale(1.25)"><use href="#buttercup"/></g>
-          <g transform="translate(60,-65) rotate(6) scale(1.0)"><use href="#buttercup"/></g>
+        <!-- Centro -->
+        <g transform="translate(0,-92) scale(1.18)">
+          <ellipse cx="0" cy="-16" rx="12" ry="8"/>
+          <ellipse cx="10" cy="-4"  rx="12" ry="8" transform="rotate(18)"/>
+          <ellipse cx="-10" cy="-4" rx="12" ry="8" transform="rotate(-18)"/>
+          <ellipse cx="6" cy="8"    rx="12" ry="8" transform="rotate(20)"/>
+          <ellipse cx="-6" cy="8"   rx="12" ry="8" transform="rotate(-20)"/>
+          <circle cx="0" cy="0" r="5" fill="#6b4e16" stroke="none"/>
+        </g>
+        <!-- Derecha -->
+        <g transform="translate(54,-66) rotate(6)">
+          <ellipse cx="0" cy="-16" rx="12" ry="8"/>
+          <ellipse cx="10" cy="-4"  rx="12" ry="8" transform="rotate(18)"/>
+          <ellipse cx="-10" cy="-4" rx="12" ry="8" transform="rotate(-18)"/>
+          <ellipse cx="6" cy="8"    rx="12" ry="8" transform="rotate(20)"/>
+          <ellipse cx="-6" cy="8"   rx="12" ry="8" transform="rotate(-20)"/>
+          <circle cx="0" cy="0" r="5" fill="#6b4e16" stroke="none"/>
         </g>
       </g>
 
-      <!-- luciérnagas -->
+      <!-- Luciérnagas -->
       <g class="fireflies" fill="#c9ff9a">
         <circle cx="-40" cy="-130" r="2"/>
         <circle cx="0"   cy="-140" r="1.8"/>
@@ -135,13 +119,13 @@
     </svg>
   </section>
 
-  <button id="btn">apretaaame</button>
-  <p id="msg" hidden>perdoname por todo 💛🌼</p>
+  <button id="btn">Toca para ver tu mensaje</button>
+  <p id="msg" hidden>Te amo mucho, amor 💛🌼</p>
 
 <script>
   const btn=document.getElementById('btn'), msg=document.getElementById('msg');
   btn?.addEventListener('click',()=>{const h=msg.hasAttribute('hidden'); if(h){msg.removeAttribute('hidden');btn.textContent='💛'; msg.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'scale(1)'}],{duration:300,easing:'ease-out'})}else{msg.setAttribute('hidden','');btn.textContent='Toca para ver tu mensaje'}});
-  document.getElementById('garden')?.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:600,easing:'ease-out',fill:'both'});
+  document.getElementById('flowers')?.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:600,easing:'ease-out',fill:'both'});
 </script>
 </body>
 </html>
