@@ -1,92 +1,74 @@
-:root{
-  --bg1:#fff7e6; --bg2:#fffde7; --text:#3b2e21; --accent:#ffca28;
+:root {
+  --bg1: #0e141b;
+  --bg2: #070b0f;
+  --text: #e7e2d9;
 }
+
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0; color:var(--text);
+  margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background: linear-gradient(180deg,var(--bg2),var(--bg1));
+  color: var(--text);
+  background: radial-gradient(120% 80% at 50% 0%, var(--bg1), var(--bg2));
   overflow-x:hidden;
 }
 
-/* layout */
 .wrap{
-  min-height:100dvh; display:grid; place-items:center;
-  padding:24px; gap:18px; text-align:center;
+  min-height:100dvh;
+  display:grid;
+  place-items:center;
+  gap:20px;
+  text-align:center;
+  padding:20px;
 }
-.intro h1{margin:0 0 4px;font-size:clamp(22px,4vw,30px)}
-.subtitle{margin:0;font-size:clamp(14px,3.2vw,16px);opacity:.8}
 
-/* ramillete */
-.bouquet{
-  display:grid; grid-auto-flow:column; gap:min(5vw,28px);
-  align-items:end;
+.intro h1{margin:0;font-size:clamp(22px,5vw,30px)}
+.subtitle{margin:0;font-size:clamp(14px,4vw,16px);opacity:.8}
+
+.scene{ display:grid; place-items:center; }
+.buttercup{ width:min(520px, 92vw); filter: drop-shadow(0 12px 24px rgba(0,0,0,.35)); }
+.buttercup svg{ width:100%; height:auto; }
+
+/* animaciones */
+.blooms { animation: sway 6s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes sway {
+  0%,100% { transform: rotate(-1.2deg) }
+  50%     { transform: rotate(1.2deg) }
 }
-.flower{ width:min(38vw,220px); filter:drop-shadow(0 8px 18px rgba(0,0,0,.12));
-  animation: float 6s ease-in-out infinite; animation-delay: var(--d,0s);
-  transform-origin: 50% 100%;
+
+.fireflies circle{ animation: twinkle 2.8s ease-in-out infinite; }
+.fireflies circle:nth-child(2){ animation-delay:.4s }
+.fireflies circle:nth-child(3){ animation-delay:.8s }
+.fireflies circle:nth-child(4){ animation-delay:1.2s }
+.fireflies circle:nth-child(5){ animation-delay:1.6s }
+@keyframes twinkle{
+  0%,100%{ opacity:.15; transform: translateY(0) }
+  50%{ opacity:.9; transform: translateY(-2px) }
 }
-.flower.sm{ width:min(30vw,180px); transform: translateY(10px) }
-.flower.md{ width:min(34vw,200px); transform: translateY(6px) }
-.flower.lg{ width:min(44vw,260px) }
 
-.flower svg{ width:100%; height:auto; animation: bloom 5s ease-in-out infinite alternate; }
-
-/* botón + mensaje */
+/* botón y mensaje */
 button{
   border:0; padding:12px 18px; border-radius:999px;
-  background: linear-gradient(180deg,#ffe082,#ffca28);
-  color:#5d4037; font-size:1.05rem;
-  box-shadow:0 8px 16px rgba(0,0,0,.15);
+  background: linear-gradient(180deg,#ffd95e,#ffb300);
+  color:#3a2a1e; font-size:1.05rem;
+  box-shadow:0 6px 14px rgba(0,0,0,.3);
   transition: transform .15s ease, box-shadow .15s ease;
-  touch-action:manipulation;
 }
-button:active{ transform: scale(.98); box-shadow:0 5px 12px rgba(0,0,0,.12) }
+button:active{ transform: scale(.97); box-shadow:0 4px 10px rgba(0,0,0,.2); }
 
 #msg{
-  font-size:1.1rem; background:#fff8e1; padding:14px 16px; border-radius:16px;
-  line-height:1.45; box-shadow: inset 0 0 0 1px #ffe082;
+  font-size:1.1rem;
+  background: rgba(255,248,225,.08);
+  padding:14px 16px;
+  border-radius:16px;
+  line-height:1.45;
+  box-shadow: inset 0 0 0 1px rgba(255,217,94,.35);
   max-width: 680px;
 }
 
-/* corazones flotando y brillitos */
-.fx{ position:fixed; inset:0; pointer-events:none; z-index:0 }
-.fx-hearts::before, .fx-hearts::after{
-  content:"❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤";
-  position:absolute; left:50%; transform:translateX(-50%);
-  font-size:18px; opacity:.18; letter-spacing:18px;
-  animation: rise 10s linear infinite;
-}
-.fx-hearts::after{ top:20%; animation-duration:12s; opacity:.12; }
-.fx-sparkles::before, .fx-sparkles::after{
-  content:"✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧";
-  position:absolute; left:20%; font-size:12px; opacity:.2; letter-spacing:16px;
-  animation: drift 8s ease-in-out infinite;
-}
-.fx-sparkles::after{ left:auto; right:15%; animation-duration:9.5s; opacity:.15; }
-
-/* animaciones suaves */
-@keyframes float{
-  0%,100%{ transform: translateY(0) }
-  50%{ transform: translateY(-8px) }
-}
-@keyframes bloom{
-  0%{ transform: rotate(-1.6deg) scale(.985) }
-  100%{ transform: rotate(1.6deg) scale(1) }
-}
-@keyframes rise{
-  0%{ top:100%; transform:translateX(-50%) translateY(0) }
-  100%{ top:-20%; transform:translateX(-50%) translateY(-120%) }
-}
-@keyframes drift{
-  0%,100%{ top:10%; transform:translateY(0) }
-  50%{ top:16%; transform:translateY(6px) }
-}
-
-/* responsive chico */
-@media (max-width:480px){
-  .bouquet{ gap:16px }
-  #msg{ font-size:1rem }
-  button{ font-size:1rem; padding:10px 14px }
+/* responsive */
+@media(max-width:480px){
+  #msg{font-size:1rem}
+  button{font-size:1rem;padding:10px 14px}
 }
