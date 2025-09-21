@@ -1,118 +1,145 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>parati 💛</title>
-  <link rel="stylesheet" href="styles.css?v=5" />
-  <meta name="theme-color" content="#0a0f14">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>parati 💛</title>
+<meta name="theme-color" content="#0a0f14" />
+<style>
+  :root { --bg1:#0e141b; --bg2:#070b0f; --text:#e7e2d9; }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{
+    margin:0; color:var(--text);
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    background: radial-gradient(120% 80% at 50% 0%, var(--bg1), var(--bg2));
+    display:grid; grid-auto-rows:min-content; justify-items:center; align-content:start;
+    gap:18px; padding:20px; text-align:center; overflow-x:hidden;
+  }
+  h1{margin:8px 0 0; font-size:clamp(26px,5vw,36px)}
+  .subtitle{margin:0 0 8px; font-size:clamp(14px,4vw,16px); opacity:.8}
+
+  /* Contenedor del SVG absolutamente centrado y limitado en ancho */
+  .stage{width:100%; display:block}
+  #garden{display:block; width:min(90vw, 620px); margin:0 auto; height:auto}
+
+  /* animaciones suaves */
+  .blooms{ animation:sway 6s ease-in-out infinite; transform-origin:50% 100% }
+  @keyframes sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+  .fireflies circle{ animation:twinkle 2.8s ease-in-out infinite }
+  .fireflies circle:nth-child(2){animation-delay:.4s}
+  .fireflies circle:nth-child(3){animation-delay:.8s}
+  .fireflies circle:nth-child(4){animation-delay:1.2s}
+  .fireflies circle:nth-child(5){animation-delay:1.6s}
+  @keyframes twinkle{0%,100%{opacity:.15;transform:translateY(0)}50%{opacity:.9;transform:translateY(-2px)}}
+
+  button{
+    border:0; padding:12px 18px; border-radius:999px;
+    background:linear-gradient(180deg,#ffd95e,#ffb300); color:#3a2a1e; font-size:1.05rem;
+    box-shadow:0 6px 14px rgba(0,0,0,.3); transition:transform .15s ease, box-shadow .15s ease;
+  }
+  button:active{ transform:scale(.97); box-shadow:0 4px 10px rgba(0,0,0,.2) }
+  #msg{
+    font-size:1.1rem; background:rgba(255,248,225,.08); padding:14px 16px; border-radius:16px;
+    line-height:1.45; box-shadow:inset 0 0 0 1px rgba(255,217,94,.35); max-width:680px; margin:0 auto
+  }
+  @media(max-width:480px){#msg{font-size:1rem} button{font-size:1rem; padding:10px 14px}}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <header class="intro">
-      <h1>parati 💛</h1>
-      <p class="subtitle">sé que no es mucho, pero intento hacerte feliz cada día</p>
-    </header>
+  <h1>parati 💛</h1>
+  <p class="subtitle">sé que no es mucho, pero intento hacerte feliz cada día</p>
 
-    <!-- ESCENA ÚNICA (borrá cualquier otra sección/FX viejos) -->
-    <section class="stage">
-      <svg id="garden" viewBox="0 0 400 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="flores amarillas">
-        <defs>
-          <!-- amarillos -->
-          <radialGradient id="petalYellow" cx="40%" cy="35%" r="80%">
-            <stop offset="0%"  stop-color="#fff27a"/>
-            <stop offset="55%" stop-color="#ffd54f"/>
-            <stop offset="100%" stop-color="#f4a300"/>
-          </radialGradient>
-          <radialGradient id="disc" cx="50%" cy="50%" r="70%">
-            <stop offset="0%" stop-color="#7a5a2a"/>
-            <stop offset="100%" stop-color="#4e3716"/>
-          </radialGradient>
-          <!-- verdes -->
-          <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#1aa37a"/>
-            <stop offset="60%" stop-color="#0f7a67"/>
-            <stop offset="100%" stop-color="#0b4f47"/>
-          </linearGradient>
-          <linearGradient id="stemG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#3fb073"/>
-            <stop offset="100%" stop-color="#1e7b4d"/>
-          </linearGradient>
-          <!-- halo -->
-          <radialGradient id="glow" cx="50%" cy="50%" r="65%">
-            <stop offset="0%" stop-color="rgba(190,255,170,.85)"/>
-            <stop offset="100%" stop-color="rgba(190,255,170,0)"/>
-          </radialGradient>
+  <section class="stage">
+    <!--
+      viewBox simétrico (-200..200, -180..180).
+      TODO lo dibujamos alrededor del (0,0) → centrado perfecto.
+    -->
+    <svg id="garden" viewBox="-200 -180 400 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="flores amarillas">
+      <defs>
+        <!-- amarillos -->
+        <radialGradient id="petalYellow" cx="40%" cy="35%" r="80%">
+          <stop offset="0%"  stop-color="#fff27a"/>
+          <stop offset="55%" stop-color="#ffd54f"/>
+          <stop offset="100%" stop-color="#f4a300"/>
+        </radialGradient>
+        <radialGradient id="disc" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#7a5a2a"/>
+          <stop offset="100%" stop-color="#4e3716"/>
+        </radialGradient>
+        <!-- verdes -->
+        <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1aa37a"/>
+          <stop offset="60%" stop-color="#0f7a67"/>
+          <stop offset="100%" stop-color="#0b4f47"/>
+        </linearGradient>
+        <linearGradient id="stemG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3fb073"/>
+          <stop offset="100%" stop-color="#1e7b4d"/>
+        </linearGradient>
+        <!-- halo -->
+        <radialGradient id="glow" cx="50%" cy="50%" r="65%">
+          <stop offset="0%" stop-color="rgba(190,255,170,.85)"/>
+          <stop offset="100%" stop-color="rgba(190,255,170,0)"/>
+        </radialGradient>
 
-          <!-- Flor tipo buttercup (5 pétalos) -->
-          <symbol id="buttercup" viewBox="-28 -28 56 56">
-            <g fill="url(#petalYellow)" stroke="#f6a700" stroke-width="1.2">
-              <ellipse cx="0" cy="-16" rx="11" ry="8" />
-              <ellipse cx="10" cy="-4" rx="11" ry="8" transform="rotate(20)"/>
-              <ellipse cx="-10" cy="-4" rx="11" ry="8" transform="rotate(-20)"/>
-              <ellipse cx="6" cy="8" rx="11" ry="8" transform="rotate(22)"/>
-              <ellipse cx="-6" cy="8" rx="11" ry="8" transform="rotate(-22)"/>
-            </g>
-            <circle r="5" fill="url(#disc)"/>
-          </symbol>
-        </defs>
-
-        <!-- Centro geométrico: (200,180). Todo se compone respecto a este punto -->
-        <g transform="translate(200,180)">
-          <!-- sombra suelo -->
-          <ellipse cx="0" cy="150" rx="120" ry="18" fill="rgba(0,0,0,.45)"/>
-          <!-- halo -->
-          <circle cx="0" cy="-10" r="150" fill="url(#glow)" opacity=".35"/>
-
-          <!-- hojas base en capas (simétricas) -->
-          <g fill="url(#leafG)" opacity=".95">
-            <path d="M-150,100 C-94,58 -40,54 0,64 C-20,86 -64,106 -118,110 Z"/>
-            <path d="M150,100 C94,58 40,54 0,64 C20,86 64,106 118,110 Z"/>
-            <path d="M0,60 C-26,48 -32,22 0,8 C32,22 26,48 0,60 Z"/>
-            <!-- hojas curvas centrales -->
-            <path d="M-36,40 C-62,16 -58,-10 -44,-36 C-36,-8 -28,14 -16,36 Z"/>
-            <path d="M36,40 C62,16 58,-10 44,-36 C36,-8 28,14 16,36 Z"/>
+        <!-- Flor tipo buttercup (5 pétalos) -->
+        <symbol id="buttercup" viewBox="-28 -28 56 56">
+          <g fill="url(#petalYellow)" stroke="#f6a700" stroke-width="1.2">
+            <ellipse cx="0" cy="-16" rx="11" ry="8" />
+            <ellipse cx="10" cy="-4" rx="11" ry="8" transform="rotate(20)"/>
+            <ellipse cx="-10" cy="-4" rx="11" ry="8" transform="rotate(-20)"/>
+            <ellipse cx="6" cy="8" rx="11" ry="8" transform="rotate(22)"/>
+            <ellipse cx="-6" cy="8" rx="11" ry="8" transform="rotate(-22)"/>
           </g>
+          <circle r="5" fill="url(#disc)"/>
+        </symbol>
+      </defs>
 
-          <!-- tallos largos -->
-          <g stroke="url(#stemG)" stroke-width="6" stroke-linecap="round" fill="none">
-            <!-- izquierda hacia ( -60,-70 ) -->
-            <path d="M-6,64 C -28,20 -44,-30 -60,-70" />
-            <!-- centro hacia ( 0,-90 ) -->
-            <path d="M0,64 C 0,14 0,-40 0,-90" />
-            <!-- derecha hacia ( 60,-65 ) -->
-            <path d="M6,64 C 28,20 44,-28 60,-65" />
-          </g>
+      <!-- SUELO + HALO (centrados) -->
+      <ellipse cx="0" cy="150" rx="120" ry="18" fill="rgba(0,0,0,.45)"/>
+      <circle  cx="0" cy="-10" r="150" fill="url(#glow)" opacity=".35"/>
 
-          <!-- flores (proporciones y posiciones como la referencia) -->
-          <g class="blooms">
-            <g transform="translate(-60,-70) rotate(-6) scale(1.05)">
-              <use href="#buttercup"/>
-            </g>
-            <g transform="translate(0,-92) scale(1.25)">
-              <use href="#buttercup"/>
-            </g>
-            <g transform="translate(60,-65) rotate(6) scale(1.0)">
-              <use href="#buttercup"/>
-            </g>
-          </g>
+      <!-- HOJAS en capas (simétricas) -->
+      <g fill="url(#leafG)" opacity=".95">
+        <path d="M-150,100 C-94,58 -40,54 0,64 C-20,86 -64,106 -118,110 Z"/>
+        <path d="M150,100 C94,58 40,54 0,64 C20,86 64,106 118,110 Z"/>
+        <path d="M0,60 C-26,48 -32,22 0,8 C32,22 26,48 0,60 Z"/>
+        <path d="M-36,40 C-62,16 -58,-10 -44,-36 C-36,-8 -28,14 -16,36 Z"/>
+        <path d="M36,40 C62,16 58,-10 44,-36 C36,-8 28,14 16,36 Z"/>
+      </g>
 
-          <!-- luciérnagas -->
-          <g class="fireflies" fill="#c9ff9a">
-            <circle cx="-40" cy="-130" r="2"/>
-            <circle cx="0"   cy="-140" r="1.8"/>
-            <circle cx="38"  cy="-132" r="1.6"/>
-            <circle cx="-12" cy="-118" r="1.5"/>
-            <circle cx="22"  cy="-110" r="1.4"/>
-          </g>
-        </g>
-      </svg>
-    </section>
+      <!-- TALLOS (curvas centradas) -->
+      <g stroke="url(#stemG)" stroke-width="6" stroke-linecap="round" fill="none">
+        <path d="M-6,64 C -28,20 -44,-30 -60,-70" />
+        <path d="M0,64  C 0,14  0,-40  0,-90" />
+        <path d="M6,64  C 28,20  44,-28  60,-65" />
+      </g>
 
-    <button id="btn">Toca para ver tu mensaje</button>
-    <p id="msg" hidden>Te amo mucho, amor 💛🌼</p>
-  </main>
+      <!-- FLORES: posiciones como la referencia, todas dentro del viewBox -->
+      <g class="blooms">
+        <g transform="translate(-60,-70) rotate(-6) scale(1.05)"><use href="#buttercup"/></g>
+        <g transform="translate(0,-92) scale(1.25)"><use href="#buttercup"/></g>
+        <g transform="translate(60,-65) rotate(6) scale(1.0)"><use href="#buttercup"/></g>
+      </g>
 
-  <script src="script.js?v=5"></script>
+      <!-- LUCIÉRNAGAS -->
+      <g class="fireflies" fill="#c9ff9a">
+        <circle cx="-40" cy="-130" r="2"/>
+        <circle cx="0"   cy="-140" r="1.8"/>
+        <circle cx="38"  cy="-132" r="1.6"/>
+        <circle cx="-12" cy="-118" r="1.5"/>
+        <circle cx="22"  cy="-110" r="1.4"/>
+      </g>
+    </svg>
+  </section>
+
+  <button id="btn">Toca para ver tu mensaje</button>
+  <p id="msg" hidden>Te amo mucho, amor 💛🌼</p>
+
+<script>
+  const btn=document.getElementById('btn'), msg=document.getElementById('msg');
+  btn?.addEventListener('click',()=>{const h=msg.hasAttribute('hidden'); if(h){msg.removeAttribute('hidden');btn.textContent='💛'; msg.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'scale(1)'}],{duration:300,easing:'ease-out'})}else{msg.setAttribute('hidden','');btn.textContent='Toca para ver tu mensaje'}});
+  document.getElementById('garden')?.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:600,easing:'ease-out',fill:'both'});
+</script>
 </body>
 </html>
