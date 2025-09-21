@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flores Amarillas 💛</title>
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <title>parati 💛</title>
+  <link rel="stylesheet" href="styles.css?v=5" />
   <meta name="theme-color" content="#0a0f14">
 </head>
 <body>
@@ -14,114 +14,105 @@
       <p class="subtitle">sé que no es mucho, pero intento hacerte feliz cada día</p>
     </header>
 
-    <!-- Escena centrada -->
-    <section class="scene">
-      <div class="bouquet">
-        <svg viewBox="0 0 320 320" role="img" aria-label="flores amarillas">
-          <defs>
-            <!-- Gradientes base -->
-            <radialGradient id="petal" cx="40%" cy="35%" r="75%">
-              <stop offset="0%"  stop-color="#fff27a"/>
-              <stop offset="55%" stop-color="#ffd54f"/>
-              <stop offset="100%" stop-color="#f4a300"/>
-            </radialGradient>
-            <radialGradient id="core" cx="50%" cy="50%" r="70%">
-              <stop offset="0%" stop-color="#7a5a2a"/>
-              <stop offset="100%" stop-color="#4e3716"/>
-            </radialGradient>
-            <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1aa37a"/>
-              <stop offset="60%" stop-color="#0f7a67"/>
-              <stop offset="100%" stop-color="#0b4f47"/>
-            </linearGradient>
-            <linearGradient id="stem" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#3fb073"/>
-              <stop offset="100%" stop-color="#1e7b4d"/>
-            </linearGradient>
-            <radialGradient id="glow" cx="50%" cy="50%" r="55%">
-              <stop offset="0%" stop-color="rgba(190,255,170,.9)"/>
-              <stop offset="100%" stop-color="rgba(190,255,170,0)"/>
-            </radialGradient>
+    <!-- ESCENA ÚNICA (borrá cualquier otra sección/FX viejos) -->
+    <section class="stage">
+      <svg id="garden" viewBox="0 0 400 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="flores amarillas">
+        <defs>
+          <!-- amarillos -->
+          <radialGradient id="petalYellow" cx="40%" cy="35%" r="80%">
+            <stop offset="0%"  stop-color="#fff27a"/>
+            <stop offset="55%" stop-color="#ffd54f"/>
+            <stop offset="100%" stop-color="#f4a300"/>
+          </radialGradient>
+          <radialGradient id="disc" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#7a5a2a"/>
+            <stop offset="100%" stop-color="#4e3716"/>
+          </radialGradient>
+          <!-- verdes -->
+          <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1aa37a"/>
+            <stop offset="60%" stop-color="#0f7a67"/>
+            <stop offset="100%" stop-color="#0b4f47"/>
+          </linearGradient>
+          <linearGradient id="stemG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3fb073"/>
+            <stop offset="100%" stop-color="#1e7b4d"/>
+          </linearGradient>
+          <!-- halo -->
+          <radialGradient id="glow" cx="50%" cy="50%" r="65%">
+            <stop offset="0%" stop-color="rgba(190,255,170,.85)"/>
+            <stop offset="100%" stop-color="rgba(190,255,170,0)"/>
+          </radialGradient>
 
-            <!-- Símbolo de rosa amarilla (capas) -->
-            <symbol id="rose" viewBox="-36 -36 72 72">
-              <!-- anillo externo (6) -->
-              <g fill="url(#petal)" stroke="#f9a825" stroke-width="1.1">
-                <path d="M0,-26 C11,-24 12,-12 0,-10 C-12,-12 -11,-24 0,-26 Z"/>
-                <path d="M0,-26 C11,-24 12,-12 0,-10 C-12,-12 -11,-24 0,-26 Z" transform="rotate(60)"/>
-                <path d="M0,-26 C11,-24 12,-12 0,-10 C-12,-12 -11,-24 0,-26 Z" transform="rotate(120)"/>
-                <path d="M0,-26 C11,-24 12,-12 0,-10 C-12,-12 -11,-24 0,-26 Z" transform="rotate(180)"/>
-                <path d="M0,-26 C11,-24 12,-12 0,-10 C-12,-12 -11,-24 0,-26 Z" transform="rotate(240)"/>
-                <path d="M0,-26 C11,-24 12,-12 0,-10 C-12,-12 -11,-24 0,-26 Z" transform="rotate(300)"/>
-              </g>
-              <!-- anillo medio (5) -->
-              <g fill="url(#petal)" stroke="#f9a825" stroke-width="1" opacity=".96">
-                <path d="M0,-18 C8,-17 9,-8 0,-7 C-9,-8 -8,-17 0,-18 Z" transform="rotate(0)"/>
-                <path d="M0,-18 C8,-17 9,-8 0,-7 C-9,-8 -8,-17 0,-18 Z" transform="rotate(72)"/>
-                <path d="M0,-18 C8,-17 9,-8 0,-7 C-9,-8 -8,-17 0,-18 Z" transform="rotate(144)"/>
-                <path d="M0,-18 C8,-17 9,-8 0,-7 C-9,-8 -8,-17 0,-18 Z" transform="rotate(216)"/>
-                <path d="M0,-18 C8,-17 9,-8 0,-7 C-9,-8 -8,-17 0,-18 Z" transform="rotate(288)"/>
-              </g>
-              <!-- capullo -->
-              <path d="M0,-8 C6,-8 7,-3 0,-2 C-7,-3 -6,-8 0,-8 Z" fill="url(#petal)" stroke="#f9a825" stroke-width="0.9"/>
-              <circle r="3.4" fill="url(#core)"/>
-            </symbol>
-          </defs>
-
-          <!-- centro de composición -->
-          <g transform="translate(160,175)">
-            <!-- sombra del suelo -->
-            <ellipse cx="0" cy="82" rx="110" ry="16" fill="rgba(0,0,0,.45)"/>
-            <!-- halo -->
-            <circle cx="0" cy="-40" r="110" fill="url(#glow)" opacity=".35"/>
-
-            <!-- hojas base simétricas -->
-            <g fill="url(#leaf)" opacity=".95">
-              <path d="M-110,60 C-70,20 -30,20 0,28 C-12,46 -40,62 -86,66 Z"/>
-              <path d="M110,60 C70,20 30,20 0,28 C12,46 40,62 86,66 Z"/>
-              <path d="M0,24 C-20,16 -26,0 0,-10 C26,0 20,16 0,24 Z"/>
+          <!-- Flor tipo buttercup (5 pétalos) -->
+          <symbol id="buttercup" viewBox="-28 -28 56 56">
+            <g fill="url(#petalYellow)" stroke="#f6a700" stroke-width="1.2">
+              <ellipse cx="0" cy="-16" rx="11" ry="8" />
+              <ellipse cx="10" cy="-4" rx="11" ry="8" transform="rotate(20)"/>
+              <ellipse cx="-10" cy="-4" rx="11" ry="8" transform="rotate(-20)"/>
+              <ellipse cx="6" cy="8" rx="11" ry="8" transform="rotate(22)"/>
+              <ellipse cx="-6" cy="8" rx="11" ry="8" transform="rotate(-22)"/>
             </g>
+            <circle r="5" fill="url(#disc)"/>
+          </symbol>
+        </defs>
 
-            <!-- tallos, centrados al origen -->
-            <g stroke="url(#stem)" stroke-width="5" fill="none" stroke-linecap="round">
-              <!-- a flor izquierda -->
-              <path d="M-6,28 C -20,-2 -26,-34 -35,-58"/>
-              <!-- a flor centro -->
-              <path d="M0,28 C 0,-6 0,-40 0,-66"/>
-              <!-- a flor derecha -->
-              <path d="M6,28 C 20,-2 26,-34 35,-58"/>
+        <!-- Centro geométrico: (200,180). Todo se compone respecto a este punto -->
+        <g transform="translate(200,180)">
+          <!-- sombra suelo -->
+          <ellipse cx="0" cy="150" rx="120" ry="18" fill="rgba(0,0,0,.45)"/>
+          <!-- halo -->
+          <circle cx="0" cy="-10" r="150" fill="url(#glow)" opacity=".35"/>
+
+          <!-- hojas base en capas (simétricas) -->
+          <g fill="url(#leafG)" opacity=".95">
+            <path d="M-150,100 C-94,58 -40,54 0,64 C-20,86 -64,106 -118,110 Z"/>
+            <path d="M150,100 C94,58 40,54 0,64 C20,86 64,106 118,110 Z"/>
+            <path d="M0,60 C-26,48 -32,22 0,8 C32,22 26,48 0,60 Z"/>
+            <!-- hojas curvas centrales -->
+            <path d="M-36,40 C-62,16 -58,-10 -44,-36 C-36,-8 -28,14 -16,36 Z"/>
+            <path d="M36,40 C62,16 58,-10 44,-36 C36,-8 28,14 16,36 Z"/>
+          </g>
+
+          <!-- tallos largos -->
+          <g stroke="url(#stemG)" stroke-width="6" stroke-linecap="round" fill="none">
+            <!-- izquierda hacia ( -60,-70 ) -->
+            <path d="M-6,64 C -28,20 -44,-30 -60,-70" />
+            <!-- centro hacia ( 0,-90 ) -->
+            <path d="M0,64 C 0,14 0,-40 0,-90" />
+            <!-- derecha hacia ( 60,-65 ) -->
+            <path d="M6,64 C 28,20 44,-28 60,-65" />
+          </g>
+
+          <!-- flores (proporciones y posiciones como la referencia) -->
+          <g class="blooms">
+            <g transform="translate(-60,-70) rotate(-6) scale(1.05)">
+              <use href="#buttercup"/>
             </g>
-
-            <!-- hojas laterales verticales -->
-            <g fill="url(#leaf)">
-              <path d="M-46,10 C -70,-30 -70,-62 -58,-88 C -52,-56 -46,-32 -36,-6 Z"/>
-              <path d="M46,10 C 70,-30 70,-62 58,-88 C 52,-56 46,-32 36,-6 Z"/>
+            <g transform="translate(0,-92) scale(1.25)">
+              <use href="#buttercup"/>
             </g>
-
-            <!-- rosas posicionadas con simetría respecto al origen -->
-            <g class="blooms">
-              <g transform="translate(-35,-74) rotate(-7)"><use href="#rose"/></g>
-              <g transform="translate(0,-92)"><use href="#rose"/></g>
-              <g transform="translate(35,-74) rotate(7)"><use href="#rose"/></g>
-            </g>
-
-            <!-- luciérnagas -->
-            <g class="fireflies" fill="#c9ff9a">
-              <circle cx="-34" cy="-116" r="2"/>
-              <circle cx="36"  cy="-118" r="1.8"/>
-              <circle cx="-6"  cy="-132" r="1.6"/>
-              <circle cx="16"  cy="-104" r="1.5"/>
-              <circle cx="-20" cy="-98"  r="1.4"/>
+            <g transform="translate(60,-65) rotate(6) scale(1.0)">
+              <use href="#buttercup"/>
             </g>
           </g>
-        </svg>
-      </div>
+
+          <!-- luciérnagas -->
+          <g class="fireflies" fill="#c9ff9a">
+            <circle cx="-40" cy="-130" r="2"/>
+            <circle cx="0"   cy="-140" r="1.8"/>
+            <circle cx="38"  cy="-132" r="1.6"/>
+            <circle cx="-12" cy="-118" r="1.5"/>
+            <circle cx="22"  cy="-110" r="1.4"/>
+          </g>
+        </g>
+      </svg>
     </section>
 
-    <button id="btn">apretameeee</button>
-    <p id="msg" hidden>perdón por todo, te amo💛🌼</p>
+    <button id="btn">Toca para ver tu mensaje</button>
+    <p id="msg" hidden>Te amo mucho, amor 💛🌼</p>
   </main>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
