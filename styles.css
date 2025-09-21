@@ -1,28 +1,14 @@
-:root {
-  --bg1: #0e141b;
-  --bg2: #070b0f;
-  --text: #e7e2d9;
-}
-
+:root { --bg1:#0e141b; --bg2:#070b0f; --text:#e7e2d9; }
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0;
+  margin:0; color:var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  color: var(--text);
   background: radial-gradient(120% 80% at 50% 0%, var(--bg1), var(--bg2));
   overflow-x:hidden;
 }
 
-.wrap{
-  min-height:100dvh;
-  display:grid;
-  place-items:center;
-  gap:20px;
-  text-align:center;
-  padding:20px;
-}
-
+.wrap{ min-height:100dvh; display:grid; place-items:center; gap:20px; text-align:center; padding:20px; }
 .intro h1{margin:0;font-size:clamp(22px,5vw,30px)}
 .subtitle{margin:0;font-size:clamp(14px,4vw,16px);opacity:.8}
 
@@ -30,24 +16,17 @@ body{
 .buttercup{ width:min(520px, 92vw); filter: drop-shadow(0 12px 24px rgba(0,0,0,.35)); }
 .buttercup svg{ width:100%; height:auto; }
 
-/* animaciones */
-.blooms { animation: sway 6s ease-in-out infinite; transform-origin: 50% 100%; }
-@keyframes sway {
-  0%,100% { transform: rotate(-1.2deg) }
-  50%     { transform: rotate(1.2deg) }
-}
-
+/* Animaciones */
+.blooms{ animation: sway 6s ease-in-out infinite; transform-origin:50% 100%; }
+@keyframes sway { 0%,100%{transform:rotate(-1.2deg)} 50%{transform:rotate(1.2deg)} }
 .fireflies circle{ animation: twinkle 2.8s ease-in-out infinite; }
 .fireflies circle:nth-child(2){ animation-delay:.4s }
 .fireflies circle:nth-child(3){ animation-delay:.8s }
 .fireflies circle:nth-child(4){ animation-delay:1.2s }
 .fireflies circle:nth-child(5){ animation-delay:1.6s }
-@keyframes twinkle{
-  0%,100%{ opacity:.15; transform: translateY(0) }
-  50%{ opacity:.9; transform: translateY(-2px) }
-}
+@keyframes twinkle{ 0%,100%{opacity:.15;transform:translateY(0)} 50%{opacity:.9;transform:translateY(-2px)} }
 
-/* botón y mensaje */
+/* Botón + mensaje */
 button{
   border:0; padding:12px 18px; border-radius:999px;
   background: linear-gradient(180deg,#ffd95e,#ffb300);
@@ -58,16 +37,12 @@ button{
 button:active{ transform: scale(.97); box-shadow:0 4px 10px rgba(0,0,0,.2); }
 
 #msg{
-  font-size:1.1rem;
-  background: rgba(255,248,225,.08);
-  padding:14px 16px;
-  border-radius:16px;
-  line-height:1.45;
-  box-shadow: inset 0 0 0 1px rgba(255,217,94,.35);
-  max-width: 680px;
+  font-size:1.1rem; background: rgba(255,248,225,.08); padding:14px 16px;
+  border-radius:16px; line-height:1.45; box-shadow: inset 0 0 0 1px rgba(255,217,94,.35);
+  max-width:680px;
 }
 
-/* responsive */
+/* Responsive */
 @media(max-width:480px){
   #msg{font-size:1rem}
   button{font-size:1rem;padding:10px 14px}

@@ -12,14 +12,12 @@ btn?.addEventListener('click', () => {
     );
   } else {
     msg.setAttribute('hidden','');
-    btn.textContent = 'apretameeeee';
+    btn.textContent = 'Toca para ver tu mensaje';
   }
 });
 
-// animación de entrada del ramillete
-document.querySelectorAll('.buttercup').forEach((el)=>{
-  el.animate(
-    [{opacity:0, transform:'translateY(12px)'},{opacity:1, transform:'translateY(0)'}],
-    {duration:600, easing:'ease-out', fill:'both'}
-  );
-});
+// entrada suave de la escena
+document.querySelector('.buttercup')?.animate(
+  [{opacity:0, transform:'translateY(12px)'},{opacity:1, transform:'translateY(0)'}],
+  {duration:600, easing:'ease-out', fill:'both'}
+);
